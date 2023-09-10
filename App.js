@@ -7,6 +7,8 @@ import {
   Text,
   View,
   Alert,
+  Pressable,
+  Image
 } from 'react-native';
 import Header from './src/components/Header';
 import NuevoPresupuesto from './src/components/NuevoPresupuesto';
@@ -15,7 +17,9 @@ import ControlPresupuesto from './src/components/ControlPresupuesto';
 const App = () => {
   const [isValidPresupuesto, setIsValidPresupuesto ] = useState(false)
   const [presupuesto, setPresupuesto] = useState(0)
+  const [gastos, setGastos] = useState([
 
+  ])
 
   const handleNuevoPresupuesto = (presupuesto) =>{
     if(Number(presupuesto) > 0){
@@ -35,6 +39,7 @@ const App = () => {
         {isValidPresupuesto ? 
           (<ControlPresupuesto
             presupuesto={presupuesto}
+            gastos={gastos}
           />) : 
           (<NuevoPresupuesto
           presupuesto={presupuesto}
@@ -43,10 +48,15 @@ const App = () => {
           {handleNuevoPresupuesto}
           />)
         }
-
-
       </View>
-
+       {isValidPresupuesto &&(
+        <Pressable>
+          <Image
+            style={styles.imagen}
+            source={require('./src/img/nuevo-gasto.png')}
+          />
+        </Pressable>
+      )}
     </View>
   );
 }
@@ -58,8 +68,14 @@ const styles = StyleSheet.create({
   },
   header:{
     backgroundColor: '#3b82F6',
-
   },
+  imagen:{
+    width:60,
+    height:60,
+    position: 'absolute',
+    top: 120,
+    right: 20
+    }
 });
 
 export default App;
