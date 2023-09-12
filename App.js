@@ -8,18 +8,19 @@ import {
   View,
   Alert,
   Pressable,
-  Image
+  Image,
+  Modal
 } from 'react-native';
 import Header from './src/components/Header';
 import NuevoPresupuesto from './src/components/NuevoPresupuesto';
 import ControlPresupuesto from './src/components/ControlPresupuesto';
+import FomrularioGasto from './src/components/FomrularioGasto';
 
 const App = () => {
   const [isValidPresupuesto, setIsValidPresupuesto ] = useState(false)
   const [presupuesto, setPresupuesto] = useState(0)
-  const [gastos, setGastos] = useState([
-
-  ])
+  const [gastos, setGastos] = useState([])
+  const [modal, setModal] = useState(false)
 
   const handleNuevoPresupuesto = (presupuesto) =>{
     if(Number(presupuesto) > 0){
@@ -49,12 +50,24 @@ const App = () => {
           />)
         }
       </View>
-       {isValidPresupuesto &&(
-        <Pressable>
+       {modal && (
+        <Modal
+          animationType='slide'
+          visible={modal}
+        >
+          <FomrularioGasto/>
+        </Modal>  
+       )}
+
+       {isValidPresupuesto && (
+        <Pressable
+          style={styles.imgModal}
+          onPress={() => setModal(!modal)}
+        >
           <Image
             style={styles.imagen}
             source={require('./src/img/nuevo-gasto.png')}
-          />
+          />  
         </Pressable>
       )}
     </View>
@@ -75,6 +88,14 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 120,
     right: 20
+    },
+    imgModal:{
+      width:60,
+      height:60,
+      backgroundColor:'#FD3248',
+      position: 'absolute',
+      top: 640,
+      right:20
     }
 });
 
