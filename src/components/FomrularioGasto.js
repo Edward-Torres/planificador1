@@ -54,12 +54,10 @@ const FomrularioGasto = ({setModal, handleGasto}) => {
                 <Picker.Item label="Ahorro" value="ahorro"/>
                 <Picker.Item label="Comida" value="comida"/>
                 <Picker.Item label="Casa" value="casa"/>
-                <Picker.Item label="Colegio Elias" value="colegio"/>
-                <Picker.Item label="Tarjetas" value="tarjetas"/>
-                <Picker.Item label="BJJ" value="bjj"/>
+                <Picker.Item label="Gastos" value="gastos"/>
                 <Picker.Item label="Ocio" value="ocio"/>
+                <Picker.Item label="Salud" value="Salud"/>
                 <Picker.Item label="Suscripciones" value="suscripciones"/>
-
             </Picker>
         </View>
         <Pressable 

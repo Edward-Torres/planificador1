@@ -16,6 +16,7 @@ import NuevoPresupuesto from './src/components/NuevoPresupuesto';
 import ControlPresupuesto from './src/components/ControlPresupuesto';
 import FomrularioGasto from './src/components/FomrularioGasto';
 import { generarId } from './src/helpers';
+import ListadoGastos from './src/components/ListadoGastos';
 
 const App = () => {
   const [isValidPresupuesto, setIsValidPresupuesto ] = useState(false)
@@ -43,29 +44,37 @@ const App = () => {
     }
     //añadir el nuevo gasto al state:
     gasto.id = generarId()
+    gasto.fecha = Date.now()
+
     setGastos([...gastos, gasto])
     setModal(!modal)
   }
   //vistas
   return (
     <View style={styles.contenedor} >
-
-      <View style={styles.header}>
-        <Header/>
-        
-        {isValidPresupuesto ? 
-          (<ControlPresupuesto
+      <ScrollView>
+        <View style={styles.header}>
+          <Header/>
+          
+          {isValidPresupuesto ? 
+            (<ControlPresupuesto
+              presupuesto={presupuesto}
+              gastos={gastos}
+            />) : 
+            (<NuevoPresupuesto
             presupuesto={presupuesto}
+            setPresupuesto={setPresupuesto}
+            handleNuevoPresupuesto=
+            {handleNuevoPresupuesto}
+            />)
+          }
+        </View>
+        {isValidPresupuesto &&(
+          <ListadoGastos
             gastos={gastos}
-          />) : 
-          (<NuevoPresupuesto
-          presupuesto={presupuesto}
-          setPresupuesto={setPresupuesto}
-          handleNuevoPresupuesto=
-          {handleNuevoPresupuesto}
-          />)
-        }
-      </View>
+          />
+        ) }
+      </ScrollView>
        {modal && (
         <Modal
           animationType='slide'
@@ -100,18 +109,20 @@ const styles = StyleSheet.create({
   },
   header:{
     backgroundColor: '#3b82F6',
+    minHeight: 400
   },
   imagen:{
     width:60,
     height:60,
     position: 'absolute',
-    top: 120,
-    right: 20
+    bottom: 5,
+    right: 22,
+    left: 1
     },
     imgModal:{
       width:60,
       height:60,
-      backgroundColor:'#FD3248',
+      //backgroundColor:'#FD3248',
       position: 'absolute',
       top: 640,
       right:20

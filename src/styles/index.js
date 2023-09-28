@@ -4,8 +4,8 @@ const globalStyles = {
         marginHorizontal: 10,
         borderRadius: 10,
         paddingVertical: 30,
-        paddingHorizontal:20,
-        transform: [{ translateY:50 }],
+        paddingHorizontal: 20,
+        transform: [{ translateY: 50 }],
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
