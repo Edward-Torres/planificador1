@@ -15,7 +15,6 @@ const diccionarioIconos ={
     gastos: require('../img/icono_gastos.png'),
     ocio: require('../img/icono_ocio.png'),
     salud: require('../img/icono_salud.png'),
-    ocio: require('../img/icono_ocio.png'),
     suscripciones: require('../img/icono_suscripciones.png'),
     
 
